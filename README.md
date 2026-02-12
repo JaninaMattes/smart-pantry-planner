@@ -30,6 +30,7 @@
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
+    <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -130,7 +131,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/architecture.PNG" alt="Project Architecture" width="100%" height="100%">
+    <img src="assets/images/architecture.png" alt="Project Architecture" width="85%" height="50%">
   </a>
 </div>
 
