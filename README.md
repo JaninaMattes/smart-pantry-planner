@@ -30,7 +30,6 @@
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
-    <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -93,47 +92,36 @@ Cookly combines inventory tracking with automated recipe recommendations based o
 </div>
 </div>
 
----
-
-### Why This README Exists
-
-There are many great README templates available on GitHub; however, none fully matched the needs of this project. This README was created to be clear, informative, and immediately useful for both contributors and first-time readers.
-
-Here's why:
-
-- Your time should be focused on creating something meaningful
-- You shouldn't repeat the same setup and documentation work for every project
-- DRY principles apply to documentation just as much as they do to code
-
-No single template fits every project, so this README will continue to evolve. Suggestions and improvements are always welcome—feel free to fork the repository, open an issue, or submit a pull request.
-
-Use the `BLANK_README.md` file to get started.
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
+---
 
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This project is built as a **mobile-first, microservice-based application** using the following technologies:
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* **Android (Kotlin)** – mobile frontend for inventory tracking, recipe recommendations, and social interactions
+* **Spring Boot (Java 11)** – backend framework for building modular microservices
+* **PostgreSQL** – relational database for persistent storage
+* **Redis** – caching layer for fast inventory lookups and recipe suggestions
+* **Apache Kafka** – asynchronous, event-driven communication between microservices
+* **Docker & Kubernetes** – containerization and orchestration for scalable deployment
+* **Kong API Gateway** – unified entry point for all microservices with routing, authentication, and rate limiting
+* **OAuth2 / Google / Apple Sign-In** – external authentication for users
+* **JUnit & Mockito** – unit and integration testing for backend services
+* **GitHub Actions** – CI/CD pipelines for automated builds, tests, and deployments
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+All microservices communicate via **REST APIs** and **Kafka events** for asynchronous updates (e.g., inventory changes triggering recipe suggestions). Frequently accessed data is cached in **Redis** to optimize response times. The **Kong API Gateway** handles all incoming mobile app requests, enforces authentication, and routes them to the correct microservice.
+
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/yourusername/yourproject">
     <img src="assets/images/architecture.png" alt="Project Architecture" width="85%" height="50%">
   </a>
 </div>
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
