@@ -33,12 +33,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	compileOnly("org.projectlombok:lombok")
-<<<<<<< HEAD
 	// runtimeOnly("org.postgresql:postgresql")
 	runtimeOnly("com.h2database:h2")
-=======
-	runtimeOnly("org.postgresql:postgresql")
->>>>>>> main
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
