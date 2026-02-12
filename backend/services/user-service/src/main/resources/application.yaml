@@ -1,3 +1,9 @@
 spring:
   application:
     name: user-service
+
+  security:
+    user:
+      name: ${ADMIN_USERNAME:admin}             # default "admin" if env variable not set
+      password: ${ADMIN_PASSWORD:changeme}      # default "changeme" if env variable not set
+      roles: ADMIN

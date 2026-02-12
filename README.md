@@ -95,6 +95,7 @@ Cookly combines inventory tracking with automated recipe recommendations based o
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ---
+---
 
 
 ### Built With
@@ -112,16 +113,18 @@ This project is built as a **mobile-first, microservice-based application** usin
 * **JUnit & Mockito** – unit and integration testing for backend services
 * **GitHub Actions** – CI/CD pipelines for automated builds, tests, and deployments
 
-<p align="right">(<a href="#top">back to top</a>)</p>
 
-All microservices communicate via **REST APIs** and **Kafka events** for asynchronous updates (e.g., inventory changes triggering recipe suggestions). Frequently accessed data is cached in **Redis** to optimize response times. The **Kong API Gateway** handles all incoming mobile app requests, enforces authentication, and routes them to the correct microservice.
+Each microservice is **independently buildable, deployable, and testable**, enabling isolated development and more scalable future progression of the system. Services communicate via **REST APIs** for synchronous interactions and **Kafka events** for asynchronous, event-driven updates (e.g., inventory changes triggering recipe recommendations), with **Redis** used to cache frequently accessed data. All client requests are routed through the **Kong API Gateway**, which serves as the single entry point, enforcing authentication and directing traffic to the appropriate service.
 
 <div align="center">
+  <a href="https://github.com/yourusername/yourproject">
   <a href="https://github.com/yourusername/yourproject">
     <img src="assets/images/architecture.png" alt="Project Architecture" width="85%" height="50%">
   </a>
 </div>
 
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
