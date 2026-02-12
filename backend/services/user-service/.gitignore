@@ -35,3 +35,28 @@ out/
 
 ### VS Code ###
 .vscode/
+.code-workspace
+
+### OS X ###
+.DS_Store
+
+### Java ###
+.mtj.tmp/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+### Gradle ###
+bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
+
+### Miscellaneous ###
+*.log
