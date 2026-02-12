@@ -1,0 +1,359 @@
+@startuml Cookly_Data_Model
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b>x</b>
+!define foreign_key(x) <i>x</i>
+!define unique(x) <u>x</u>
+
+skinparam class {
+    BackgroundColor #FFF9C4
+    BorderColor #666666
+    ArrowColor #333333
+}
+
+' === USER DOMAIN ===
+class users {
+    primary_key(id): UUID
+    unique(email): VARCHAR(255)
+    unique(username): VARCHAR(50)
+    password_hash: VARCHAR(255)
+    full_name: VARCHAR(100)
+    avatar_url: VARCHAR(500)
+    bio: TEXT
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+    is_active: BOOLEAN
+    email_verified: BOOLEAN
+}
+
+class user_preferences {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    cooking_skill: ENUM(beginner, intermediate, advanced)
+    preferred_cuisines: JSONB
+    health_goal: ENUM(weight_loss, muscle_gain, maintenance, healthy_living)
+    daily_calorie_target: INT
+    dietary_type: ENUM(omnivore, vegetarian, vegan, pescatarian)
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+}
+
+class user_allergies {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    allergen: VARCHAR(100)
+    severity: ENUM(mild, moderate, severe)
+    created_at: TIMESTAMP
+}
+
+class user_restrictions {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    restriction: VARCHAR(100)
+    reason: TEXT
+    created_at: TIMESTAMP
+}
+
+' === RECIPE DOMAIN ===
+class recipes {
+    primary_key(id): UUID
+    foreign_key(author_id): UUID
+    title: VARCHAR(200)
+    description: TEXT
+    image_url: VARCHAR(500)
+    prep_time_minutes: INT
+    cook_time_minutes: INT
+    total_time_minutes: INT
+    servings: INT
+    difficulty: ENUM(easy, medium, hard)
+    cuisine_type: VARCHAR(50)
+    meal_type: ENUM(breakfast, lunch, dinner, snack, dessert)
+    is_public: BOOLEAN
+    view_count: INT
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+}
+
+class recipe_ingredients {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    ingredient_name: VARCHAR(200)
+    quantity: DECIMAL(10,2)
+    unit: VARCHAR(50)
+    preparation_notes: TEXT
+    is_optional: BOOLEAN
+    order_index: INT
+}
+
+class recipe_instructions {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    step_number: INT
+    instruction: TEXT
+    duration_minutes: INT
+    image_url: VARCHAR(500)
+}
+
+class recipe_nutrition {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    calories: INT
+    protein_g: DECIMAL(5,2)
+    carbs_g: DECIMAL(5,2)
+    fat_g: DECIMAL(5,2)
+    fiber_g: DECIMAL(5,2)
+    sugar_g: DECIMAL(5,2)
+    sodium_mg: DECIMAL(6,2)
+}
+
+class recipe_tags {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    tag: VARCHAR(50)
+}
+
+' === INVENTORY DOMAIN ===
+class user_inventory {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    item_name: VARCHAR(200)
+    quantity: DECIMAL(10,2)
+    unit: VARCHAR(50)
+    category: VARCHAR(50)
+    purchase_date: DATE
+    expiry_date: DATE
+    location: VARCHAR(100)
+    barcode: VARCHAR(100)
+    notes: TEXT
+    is_expired: BOOLEAN
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+}
+
+class inventory_history {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    foreign_key(item_id): UUID
+    action: ENUM(added, used, expired, wasted)
+    quantity: DECIMAL(10,2)
+    timestamp: TIMESTAMP
+    recipe_id: UUID
+}
+
+' === MEAL PLANNING DOMAIN ===
+class meal_plans {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    plan_name: VARCHAR(200)
+    start_date: DATE
+    end_date: DATE
+    plan_type: ENUM(daily, weekly, custom)
+    target_calories: INT
+    is_active: BOOLEAN
+    created_at: TIMESTAMP
+}
+
+class daily_meals {
+    primary_key(id): UUID
+    foreign_key(meal_plan_id): UUID
+    foreign_key(recipe_id): UUID
+    meal_date: DATE
+    meal_type: ENUM(breakfast, lunch, dinner, snack)
+    servings: INT
+    is_completed: BOOLEAN
+    notes: TEXT
+}
+
+' === SHOPPING LIST DOMAIN ===
+class shopping_lists {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    list_name: VARCHAR(200)
+    is_shared: BOOLEAN
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+}
+
+class shopping_list_items {
+    primary_key(id): UUID
+    foreign_key(list_id): UUID
+    item_name: VARCHAR(200)
+    quantity: DECIMAL(10,2)
+    unit: VARCHAR(50)
+    category: VARCHAR(50)
+    is_checked: BOOLEAN
+    checked_at: TIMESTAMP
+    foreign_key(added_by_user_id): UUID
+    notes: TEXT
+}
+
+class shared_list_permissions {
+    primary_key(id): UUID
+    foreign_key(list_id): UUID
+    foreign_key(user_id): UUID
+    permission: ENUM(view, edit, admin)
+    shared_at: TIMESTAMP
+}
+
+' === SOCIAL DOMAIN ===
+class follows {
+    primary_key(id): UUID
+    foreign_key(follower_id): UUID
+    foreign_key(following_id): UUID
+    created_at: TIMESTAMP
+}
+
+class recipe_likes {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    foreign_key(user_id): UUID
+    created_at: TIMESTAMP
+}
+
+class recipe_comments {
+    primary_key(id): UUID
+    foreign_key(recipe_id): UUID
+    foreign_key(user_id): UUID
+    comment_text: TEXT
+    parent_comment_id: UUID
+    created_at: TIMESTAMP
+    updated_at: TIMESTAMP
+}
+
+class recipe_collections {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    collection_name: VARCHAR(200)
+    description: TEXT
+    is_public: BOOLEAN
+    created_at: TIMESTAMP
+}
+
+class collection_recipes {
+    primary_key(id): UUID
+    foreign_key(collection_id): UUID
+    foreign_key(recipe_id): UUID
+    added_at: TIMESTAMP
+}
+
+class activity_feed {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    activity_type: ENUM(recipe_created, recipe_liked, user_followed, comment_added)
+    foreign_key(target_id): UUID
+    metadata: JSONB
+    created_at: TIMESTAMP
+}
+
+' === CHAT DOMAIN ===
+class conversations {
+    primary_key(id): UUID
+    conversation_type: ENUM(direct, group, household)
+    conversation_name: VARCHAR(200)
+    created_at: TIMESTAMP
+}
+
+class conversation_participants {
+    primary_key(id): UUID
+    foreign_key(conversation_id): UUID
+    foreign_key(user_id): UUID
+    role: ENUM(member, admin)
+    joined_at: TIMESTAMP
+    last_read_at: TIMESTAMP
+}
+
+class messages {
+    primary_key(id): UUID
+    foreign_key(conversation_id): UUID
+    foreign_key(sender_id): UUID
+    message_text: TEXT
+    message_type: ENUM(text, recipe_share, shopping_list_share, image)
+    foreign_key(shared_recipe_id): UUID
+    foreign_key(shared_list_id): UUID
+    media_url: VARCHAR(500)
+    created_at: TIMESTAMP
+    is_edited: BOOLEAN
+}
+
+class household_groups {
+    primary_key(id): UUID
+    group_name: VARCHAR(200)
+    foreign_key(admin_user_id): UUID
+    invite_code: VARCHAR(20)
+    created_at: TIMESTAMP
+}
+
+class household_members {
+    primary_key(id): UUID
+    foreign_key(household_id): UUID
+    foreign_key(user_id): UUID
+    role: ENUM(member, admin)
+    joined_at: TIMESTAMP
+}
+
+' === NOTIFICATION DOMAIN ===
+class notifications {
+    primary_key(id): UUID
+    foreign_key(user_id): UUID
+    notification_type: ENUM(expiry_warning, follower, like, comment, meal_reminder, list_update)
+    title: VARCHAR(200)
+    message: TEXT
+    foreign_key(related_id): UUID
+    is_read: BOOLEAN
+    sent_at: TIMESTAMP
+    read_at: TIMESTAMP
+}
+
+' === RELATIONSHIPS ===
+
+' User relationships
+users "1" -- "1" user_preferences : has
+users "1" -- "*" user_allergies : has
+users "1" -- "*" user_restrictions : has
+
+' Recipe relationships
+users "1" -- "*" recipes : authors
+recipes "1" -- "*" recipe_ingredients : has
+recipes "1" -- "*" recipe_instructions : has
+recipes "1" -- "0..1" recipe_nutrition : has
+recipes "1" -- "*" recipe_tags : has
+
+' Inventory relationships
+users "1" -- "*" user_inventory : owns
+user_inventory "1" -- "*" inventory_history : tracks
+
+' Meal planning relationships
+users "1" -- "*" meal_plans : creates
+meal_plans "1" -- "*" daily_meals : contains
+recipes "1" -- "*" daily_meals : used_in
+
+' Shopping list relationships
+users "1" -- "*" shopping_lists : creates
+shopping_lists "1" -- "*" shopping_list_items : contains
+shopping_lists "1" -- "*" shared_list_permissions : shared_with
+
+' Social relationships
+users "1" -- "*" follows : follower
+users "1" -- "*" follows : following
+users "1" -- "*" recipe_likes : likes
+recipes "1" -- "*" recipe_likes : liked_by
+users "1" -- "*" recipe_comments : writes
+recipes "1" -- "*" recipe_comments : has
+users "1" -- "*" recipe_collections : owns
+recipe_collections "1" -- "*" collection_recipes : contains
+recipes "1" -- "*" collection_recipes : saved_in
+users "1" -- "*" activity_feed : generates
+
+' Chat relationships
+conversations "1" -- "*" conversation_participants : has
+users "1" -- "*" conversation_participants : participates
+conversations "1" -- "*" messages : contains
+users "1" -- "*" messages : sends
+recipes "0..1" -- "*" messages : shared_in
+shopping_lists "0..1" -- "*" messages : shared_in
+household_groups "1" -- "*" household_members : has
+users "1" -- "*" household_members : member_of
+
+' Notification relationships
+users "1" -- "*" notifications : receives
+
+@enduml
