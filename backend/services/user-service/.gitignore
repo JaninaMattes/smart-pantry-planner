@@ -35,6 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 .code-workspace
 
 ### OS X ###
@@ -60,3 +61,5 @@ gradle-app.setting
 
 ### Miscellaneous ###
 *.log
+=======
+>>>>>>> main
