@@ -29,7 +29,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="assets/images/logo.png" alt="Logo" width="100%" height="50%">
+    <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -87,7 +87,7 @@ This repository documents the design and development of **Cookly** a smart recip
 
 <div align="center">
   <img src="assets/images/ux-ui-designflow.png" alt="Figma navigable screens preview" width="100%">
-</div>>
+</div>
 
 ---
 
