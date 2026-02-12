@@ -81,7 +81,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This repository documents the design and development of **Cookly** a smart recipe planner for a healthier and less wasteful life. 
+This repository documents the design and development of **Cookly**, a smart, social cooking app that helps users reduce food waste, manage their pantry efficiently and discover personalised and healthy meal suggestions.  
+
+Cookly combines inventory tracking with automated recipe recommendations based on available ingredients and social features that allow users to share recipes, meal plans and shopping lists with friends or household members. The aim of this mobile application is to provide a seamless, healthy and collaborative cooking experience that adapts to each user's lifestyle and preferences.
 
 ### 🎨 Frontend UX/UI Design Prototype
 
@@ -138,6 +140,15 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+
+IDE used  Visual Studio Code with Spring Boot Extension Pack,
+A Java™ Development Kit (JDK) such as BellSoft Liberica JDK version 17 or 21.
+Gradle 7.5+ or Maven 3.5+
+
+Run backend in command MacOS/Linux line
+```./gradlew bootRun```
+
+The endpoint is then available under ```http://localhost:8080/<endpoint-name>```
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
