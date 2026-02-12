@@ -30,6 +30,7 @@
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
+    <img src="assets/images/logo-dark.png" alt="Logo" width="25%" height="25%">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -90,6 +91,7 @@ Cookly combines inventory tracking with automated recipe recommendations based o
 <div align="center">
   <img src="assets/images/ux-ui-designflow.png" alt="Figma navigable screens preview" width="100%">
 </div>
+</div>
 
 ---
 
@@ -140,6 +142,15 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+
+IDE used  Visual Studio Code with Spring Boot Extension Pack,
+A Java™ Development Kit (JDK) such as BellSoft Liberica JDK version 17 or 21.
+Gradle 7.5+ or Maven 3.5+
+
+Run backend in command MacOS/Linux line
+```./gradlew bootRun```
+
+The endpoint is then available under ```http://localhost:8080/<endpoint-name>```
 
 IDE used  Visual Studio Code with Spring Boot Extension Pack,
 A Java™ Development Kit (JDK) such as BellSoft Liberica JDK version 17 or 21.
