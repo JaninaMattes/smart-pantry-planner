@@ -29,7 +29,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.PNG" alt="Logo" width="100%" height="100%">
+    <img src="assets/images/logo.png" alt="Logo" width="100%" height="50%">
   </a>
 
   <h3 align="center">Best-README-Template</h3>
@@ -81,12 +81,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This repository documents the design and development of....
+This repository documents the design and development of **Cookly** a smart recipe planner for a healthier and less wasteful life. 
 
 ### 🎨 Frontend UX/UI Design Prototype
 
 <div align="center">
-  <img src="assets/images/design-frontend.png" alt="Figma navigable screens preview" width="100%">
+  <img src="assets/images/ux-ui-designflow.png" alt="Figma navigable screens preview" width="100%">
 </div>>
 
 ---
